@@ -187,8 +187,11 @@ class preloadScene extends Phaser.Scene {
 
 
         console.log("preloadScene")
-        this.add.text(10,500, 'Animation labs, press spacebar to continue', 
-            { font: '24px Courier', fill: '#ffffff' });
+        this.add.text(90,300, 'TO RESCUE THE PRINCESS', 
+            { font: '34px Courier', fill: '#ffffff' });
+
+        this.add.text(175,400, 'Press SPACEBAR to start the game', 
+            { font: '14px Courier', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
 

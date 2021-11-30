@@ -72,8 +72,8 @@ class room2 extends Phaser.Scene {
       this.guard = this.physics.add.sprite(565, 380, "guardleft").play("guardleftAnim").setScale(0.8);
       this.guard2 = this.physics.add.sprite(270, 250, "guarddown").play("guarddownAnim").setScale(0.9);
 
-      this.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
-      this.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
 
 
       this.key1 = this.physics.add.sprite(510, 90, "keypng").setScale(0.5);
@@ -154,17 +154,23 @@ class room2 extends Phaser.Scene {
 
         key1.disableBody(true, true);
 
-         if ( window.key === 1) {
-            this.keyimg1.setVisible(true);
+        if ( window.key === 3) {
+            window.keyimg3.setVisible(true);
     
         } else if ( window.key === 2) {
-            this.keyimg2.setVisible(true);
+            window.keyimg2.setVisible(true);
+    
+        } else if ( window.key === 1) {
+            window.keyimg1.setVisible(true);
     
         } else if (window.key === 0) {
-            this.keyimg.setVisible(false);
+            window.keyimg3.setVisible(false);
     
-        }
-    }
+        } 
+
+
+
+}
 
     guardCaught() {
         console.log("Late for classes, caught by the guard");

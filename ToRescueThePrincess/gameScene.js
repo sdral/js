@@ -181,9 +181,9 @@ class gameScene extends Phaser.Scene {
 
     //   this.guard2 = this.physics.add.sprite(300, 700, "guarddown").play("guarddownAnim").setScale(0.9);
 
-      this.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
-      this.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
-      this.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
 
     //   this.key1 = this.physics.add.sprite(200, 200, "keypng").setScale(0.5);
     //   this.key2 = this.physics.add.sprite(250, 200, "keypng").setScale(0.5);
@@ -292,30 +292,30 @@ class gameScene extends Phaser.Scene {
 
     } // end of update // 
 
-    // collectKey (player,key1) {
-    //     console.log("collectKey")
+    collectKey (player,key1) {
+        console.log("collectKey")
 
-    //     window.key++
+        window.key++
 
-    //     key1.disableBody(true, true);
+        key1.disableBody(true, true);
 
-    //     if ( window.key === 3) {
-    //         this.keyimg3.setVisible(true);
+        if ( window.key === 3) {
+            window.keyimg3.setVisible(true);
     
-    //     } else if ( window.key === 2) {
-    //         this.keyimg2.setVisible(true);
+        } else if ( window.key === 2) {
+            window.keyimg2.setVisible(true);
     
-    //     } else if ( window.key === 1) {
-    //         this.keyimg1.setVisible(true);
+        } else if ( window.key === 1) {
+            window.keyimg1.setVisible(true);
     
-    //     } else if (window.key === 0) {
-    //         this.keyimg3.setVisible(false);
+        } else if (window.key === 0) {
+            window.keyimg3.setVisible(false);
     
-    //     } 
+        } 
 
 
 
-// }
+}
 
     guardCaught() {
         console.log("Late for classes, caught by the guard");
