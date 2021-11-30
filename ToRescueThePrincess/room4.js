@@ -66,6 +66,23 @@ class room4 extends Phaser.Scene {
 
     // make the camera follow the player
     this.cameras.main.startFollow(this.player);
+
+    this.add.text(100,430, 'YOU HAS SAVE THE PRINCESS', 
+            { font: '35px Rakkas', fill: '#ffffff' });
+
+          this.add.text(260,500, 'press spacebar to restart', 
+            { font: '20px Rakkas', fill: '#ffffff' });
+
+            var spaceDown = this.input.keyboard.addKey('SPACE');
+
+        spaceDown.on('down', function(){
+            let playerPos = {};
+        playerPos.x = 30
+        playerPos.y = 260
+        playerPos.dir = "right"
+            this.scene.start("gameScene",{playerPos: playerPos});
+            }, this );
+            window.key = 0
     }
 
     update() {
