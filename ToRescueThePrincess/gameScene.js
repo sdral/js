@@ -20,6 +20,7 @@ class gameScene extends Phaser.Scene {
 
          this.load.image('dungeonpng', 'assets/dungeon1.png')
          this.load.image('wallpng', 'assets/wall.png')
+         this.load.image("keypng","assets/key.png")
 
 
         // // chars
@@ -164,16 +165,43 @@ class gameScene extends Phaser.Scene {
         callbackScope: this,
         loop: false,
       });
+
+      this.time.addEvent({
+        delay: 1000,
+        callback: this.moveGuard3,
+        callbackScope: this,
+        loop: false,
+      });
   
     //   this.guard = this.physics.add.sprite(757, 460, "guardleft").play("guardleftAnim").setScale(0.85);
       this.guard = this.physics.add.sprite(707, 150, "guarddown").play("guarddownAnim").setScale(0.9);
-      this.guard2 = this.physics.add.sprite(336, 747, "guardup"&&"guarddown").play("guardupAnim"&&"guarddownAnim").setScale(0.9);
+      this.guard2 = this.physics.add.sprite(337, 747, "guarddown").play("guarddownAnim").setScale(0.9);
+      this.guard3 = this.physics.add.sprite(747, 435, "guarddown").play("guarddownAnim").setScale(0.9);
 
+    //   this.guard2 = this.physics.add.sprite(300, 700, "guarddown").play("guarddownAnim").setScale(0.9);
+
+    //   this.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+    //   this.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+    //   this.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+
+    //   this.key1 = this.physics.add.sprite(200, 200, "keypng").setScale(0.5);
+    //   this.key2 = this.physics.add.sprite(250, 200, "keypng").setScale(0.5);
+    //   this.key3 = this.physics.add.sprite(300, 200, "keypng").setScale(0.5);
+
+      
+    // this.physics.add.overlap(
+    //     this.player,
+    //     [this.key1,this.key2,this.key3],
+    //     this.collectKey,
+    //     null,
+    //     this
+    //   );
 
     this.wallLayer.setCollisionByExclusion(-1, true);
 
     this.physics.add.collider(this.player,this.wallLayer);
     this.physics.add.collider(this.guard,this.wallLayer);
+        
 
 
     //  Input Events
@@ -229,7 +257,7 @@ class gameScene extends Phaser.Scene {
         this.player.x < 830 &&
         this.player.y > 855 &&
         this.player.y < 868 
-        // window.key >= 1
+        && window.key >= 6
     ){
         this.room4();
     }
@@ -263,6 +291,31 @@ class gameScene extends Phaser.Scene {
 
     } // end of update // 
 
+    // collectKey (player,key1) {
+    //     console.log("collectKey")
+
+    //     window.key++
+
+    //     key1.disableBody(true, true);
+
+    //     if ( window.key === 3) {
+    //         this.keyimg3.setVisible(true);
+    
+    //     } else if ( window.key === 2) {
+    //         this.keyimg2.setVisible(true);
+    
+    //     } else if ( window.key === 1) {
+    //         this.keyimg1.setVisible(true);
+    
+    //     } else if (window.key === 0) {
+    //         this.keyimg3.setVisible(false);
+    
+    //     } 
+
+
+
+// }
+
     guardCaught() {
         console.log("Late for classes, caught by the guard");
         this.scene.start("gameOver");
@@ -289,16 +342,34 @@ class gameScene extends Phaser.Scene {
       moveGuard2() {
         console.log("guard moveDownUp");
         this.tweens.timeline({
-          targets: this.guard,
+          targets: this.guard2,
           ease: "Linear",
           loop: -1, // loop forever
           duration: 2000,
           tweens: [
             {
-              y: 265,
+              y: 872,
             },
             {
-              y: 150,
+              y: 747,
+            },
+          ],
+        });
+      }
+
+      moveGuard3() {
+        console.log("guard moveUpDown");
+        this.tweens.timeline({
+          targets: this.guard3,
+          ease: "Linear",
+          loop: -1, // loop forever
+          duration: 2000,
+          tweens: [
+            {
+              y: 532,
+            },
+            {
+              y: 435,
             },
           ],
         });
