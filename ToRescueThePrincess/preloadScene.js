@@ -187,11 +187,11 @@ class preloadScene extends Phaser.Scene {
 
 
         console.log("preloadScene")
-        this.add.text(90,300, 'TO RESCUE THE PRINCESS', 
-            { font: '34px Courier', fill: '#ffffff' });
+        this.add.text(70,280, 'TO RESCUE THE PRINCESS', 
+            { font: '40px Rakkas', fill: '#ffffff' });
 
-        this.add.text(175,400, 'Press SPACEBAR to start the game', 
-            { font: '14px Courier', fill: '#ffffff' });
+        this.add.text(175,550, 'Press SPACEBAR to start the game', 
+            { font: '20px Rakkas', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
 
@@ -206,3 +206,5 @@ class preloadScene extends Phaser.Scene {
     }
 
 }
+
+window.key = 0

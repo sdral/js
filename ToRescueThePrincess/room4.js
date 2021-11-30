@@ -100,6 +100,7 @@ class room4 extends Phaser.Scene {
         this.player.anims.play('down', true);
     } else {
         this.player.setVelocity(0);
+        this.player.anims.stop()
     }
 
     }///////// end of update //////////

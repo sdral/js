@@ -14,7 +14,7 @@ var config = {
     //     mode: Phaser.Scale.FIT,
     //     autoCenter: Phaser.Scale.CENTER_BOTH
     // },
-    backgroundColor: '#422835',
+    backgroundColor: '#422835', 
     pixelArt: true,
     //// Add all scenes below in the array
     scene: [preloadScene,gameScene,room1,room2,room3,room4,gameOver]
@@ -22,4 +22,4 @@ var config = {
 
 var game = new Phaser.Game(config);
 
-window.key = 0
+window.keys= 0

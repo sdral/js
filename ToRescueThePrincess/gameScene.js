@@ -184,6 +184,66 @@ class gameScene extends Phaser.Scene {
       window.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
       window.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
       window.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg4 = this.add.image (200,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg5 = this.add.image (250,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg6 = this.add.image (300,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      window.keyimg7 = this.add.image (350,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+    
+      if ( window.key === 1) {
+        window.keyimg1.setVisible(true);
+
+    } else if ( window.key === 2) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+
+    } else if ( window.key === 3) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+        window.keyimg3.setVisible(true);
+
+    } else if ( window.key === 4) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+        window.keyimg3.setVisible(true);
+        window.keyimg4.setVisible(true);
+
+    } else if ( window.key === 5) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+        window.keyimg3.setVisible(true);
+        window.keyimg4.setVisible(true);
+        window.keyimg5.setVisible(true);
+
+    } else if ( window.key === 6) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+        window.keyimg3.setVisible(true);
+        window.keyimg4.setVisible(true);
+        window.keyimg5.setVisible(true);
+        window.keyimg6.setVisible(true);  
+
+    } else if ( window.key === 7) {
+        window.keyimg1.setVisible(true);
+        window.keyimg2.setVisible(true);
+        window.keyimg3.setVisible(true);
+        window.keyimg4.setVisible(true);
+        window.keyimg5.setVisible(true);
+        window.keyimg6.setVisible(true);
+        window.keyimg7.setVisible(true);
+
+    } else if (window.key === 0) {
+        window.keyimg1.setVisible(false);
+        window.keyimg2.setVisible(false);
+        window.keyimg3.setVisible(false);
+        window.keyimg4.setVisible(false);
+        window.keyimg5.setVisible(false);
+        window.keyimg6.setVisible(false);
+        window.keyimg7.setVisible(false);
+
+    } 
+    
+
+    
 
     //   this.key1 = this.physics.add.sprite(200, 200, "keypng").setScale(0.5);
     //   this.key2 = this.physics.add.sprite(250, 200, "keypng").setScale(0.5);
@@ -258,7 +318,7 @@ class gameScene extends Phaser.Scene {
         this.player.x < 830 &&
         this.player.y > 855 &&
         this.player.y < 868 
-        && window.key >= 6
+        && window.key >= 7
     ){
         this.room4();
     }
@@ -299,19 +359,7 @@ class gameScene extends Phaser.Scene {
 
         key1.disableBody(true, true);
 
-        if ( window.key === 3) {
-            window.keyimg3.setVisible(true);
-    
-        } else if ( window.key === 2) {
-            window.keyimg2.setVisible(true);
-    
-        } else if ( window.key === 1) {
-            window.keyimg1.setVisible(true);
-    
-        } else if (window.key === 0) {
-            window.keyimg3.setVisible(false);
-    
-        } 
+       
 
 
 

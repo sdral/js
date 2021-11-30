@@ -21,11 +21,11 @@ class gameOver extends Phaser.Scene {
        
 
         console.log("gameOver")
-        this.add.text(10,500, 'GAME OVER', 
-            { font: '24px Courier', fill: '#ffffff' });
+        this.add.text(185,280, 'GAME OVER', 
+            { font: '44px Rakkas', fill: '#ffffff' });
 
-          this.add.text(10,550, 'press spacebar to restart', 
-            { font: '24px Courier', fill: '#ffffff' });
+          this.add.text(220,550, 'press spacebar to restart', 
+            { font: '20px Rakkas', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
 
@@ -36,7 +36,8 @@ class gameOver extends Phaser.Scene {
         playerPos.dir = "right"
             this.scene.start("gameScene",{playerPos: playerPos});
             }, this );
-
+            window.key = 0
     }
 
+    
 }
