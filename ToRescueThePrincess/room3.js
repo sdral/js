@@ -23,6 +23,7 @@ class room3 extends Phaser.Scene {
 
     create() {
         console.log('*** room3 scene');
+        console.log("keys",window.key);
 
         var map = this.make.tilemap({key:'room3'});
 

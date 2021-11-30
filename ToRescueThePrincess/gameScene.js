@@ -36,6 +36,7 @@ class gameScene extends Phaser.Scene {
     create (){
 
     console.log("world map")
+    console.log("keys",window.key);
 
    var map = this.make.tilemap({key:'world'});
 
