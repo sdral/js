@@ -181,9 +181,9 @@ class gameScene extends Phaser.Scene {
 
     //   this.guard2 = this.physics.add.sprite(300, 700, "guarddown").play("guarddownAnim").setScale(0.9);
 
-    //   this.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
-    //   this.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
-    //   this.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      this.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      this.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
+      this.keyimg3 = this.add.image (150,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
 
     //   this.key1 = this.physics.add.sprite(200, 200, "keypng").setScale(0.5);
     //   this.key2 = this.physics.add.sprite(250, 200, "keypng").setScale(0.5);
