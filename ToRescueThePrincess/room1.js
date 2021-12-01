@@ -166,8 +166,8 @@ class room1 extends Phaser.Scene {
     update() {
 
         if(
-            this.player.x > 284.8 &
-            this.player.x < 306.5 &
+            this.player.x > 279 &
+            this.player.x < 313 &
             this.player.y > 516 &
             this.player.y < 520 
         ){
@@ -273,7 +273,6 @@ class room1 extends Phaser.Scene {
             window.keyimg7.setVisible(false);
     
         } 
-
 
 
 }
