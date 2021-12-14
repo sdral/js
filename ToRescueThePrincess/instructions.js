@@ -1,8 +1,8 @@
-class preloadScene extends Phaser.Scene {
+class instructions extends Phaser.Scene {
 
     constructor ()
     {
-        super({ key: 'preloadScene' });
+        super({ key: 'instructions' });
     }
 
     preload() {
@@ -21,13 +21,10 @@ class preloadScene extends Phaser.Scene {
         this.load.atlas('guardup', 'assets/guard_walk_up.png', 'assets/guard_walk_up.json');
         this.load.atlas('guarddown', 'assets/guard_walk_down.png', 'assets/guard_walk_down.json');
 
-        this.load.atlas('guardleftanim', 'assets/guard_left_anim.png', 'assets/guard_left_anim.json');
-
-        this.load.image("introjpg","assets/intro.jpg")
+        this.load.image("instruction1","assets/instruction1.jpg")
 
       this.load.audio("ding","assets/ding.mp3");
       this.load.audio("bgmusic","assets/bg_music.mp3");
-      this.load.audio("preloadmusic","assets/preloadmusic.mp3");
       this.load.audio("hit","assets/hit.wav");
       this.load.audio("dooropen","assets/doorOpen.wav");
       this.load.audio("win","assets/win.wav");
@@ -39,11 +36,8 @@ class preloadScene extends Phaser.Scene {
 
     create () {
 
-      this.add.image (320,320,'introjpg')
-      this.music = this.sound.add("bgmusic",{loop: true}).setVolume(0.06);
-      this.music = this.sound.add("preloadmusic",{loop: true}).setVolume(0.06);
-
-      this.music.play();
+      
+      this.add.image (320,320,'instruction1')
 
         this.anims.create({ 
             key: 'left', 
@@ -197,30 +191,18 @@ class preloadScene extends Phaser.Scene {
             repeat: -1,
           });
 
-          this.anims.create({ 
-            key: 'guardleftanims', 
-           frames: [ 
-               { key: 'guardleftanim', frame: 'Asset 133' },
-               { key: 'guardleftanim', frame: 'Asset 134' }, 
-              
-                   
-           ],
-                   frameRate: 2, 
-                   repeat: -1
-               });
-
-          this.add.sprite(450, 500, "guardleftanim").play("guardleftanims").setScale(0.9);
+        //   this.add.sprite(100, 100, "guardleft").play("guardleftAnim").setScale(1);
         //   this.add.sprite(100, 100, "guardright").play("guardleftAnim").setScale(1);
         //   this.add.sprite(100, 100, "guardup").play("guardleftAnim").setScale(1);
         //   this.add.sprite(100, 100, "guarddown").play("guardleftAnim").setScale(1);
 
 
         console.log("preloadScene")
-        // this.add.text(70,280, 'TO RESCUE THE PRINCESS', 
+        // this.add.text(70,280, 'whatsup', 
         //     { font: '40px Rakkas', fill: '#ffffff' });
 
-        this.add.text(205,195, 'Press SPACEBAR to start the game', 
-            { font: '17px Rakkas', fill: '#ffffff' });
+        this.add.text(175,440, 'Press SPACEBAR to start the game', 
+            { font: '20px Rakkas', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
 
@@ -229,7 +211,7 @@ class preloadScene extends Phaser.Scene {
         playerPos.x = 30
         playerPos.y = 260
         playerPos.dir = "right"
-            this.scene.start("scene1",{playerPos: playerPos});
+            this.scene.start("instructions2",{playerPos: playerPos});
             }, this );
 
     }

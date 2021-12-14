@@ -18,12 +18,22 @@ class room2 extends Phaser.Scene {
         this.load.image('dungeonpng', 'assets/dungeon1.png')
          this.load.image('wallpng', 'assets/wall.png')
          this.load.image("keypng","assets/key.png")
+         this.load.image("heartpng","assets/heart.png")
 
+         this.load.audio("ding","assets/ding.mp3");
+         this.load.audio("hit","assets/hit.wav");
+         this.load.audio("dooropen","assets/doorOpen.wav");
+         this.load.audio("lose","assets/lose.mp3");
     }
 
     create() {
         console.log('*** room2 scene');
         console.log("keys",window.key);
+
+        this.dingSnd = this.sound.add("ding").setVolume(3);
+        this.hitSnd = this.sound.add("hit").setVolume(3);
+        this.dooropenSnd = this.sound.add("dooropen").setVolume(0.5);
+        this.loseSnd = this.sound.add("lose").setVolume(0.5);
 
         var map = this.make.tilemap({key:'room2'});
 
@@ -71,6 +81,10 @@ class room2 extends Phaser.Scene {
 
       this.guard = this.physics.add.sprite(565, 380, "guardleft").play("guardleftAnim").setScale(0.8);
       this.guard2 = this.physics.add.sprite(270, 250, "guarddown").play("guarddownAnim").setScale(0.9);
+
+      window.heartimg1 = this.add.image (480,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
+      window.heartimg2 = this.add.image (530,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
+      window.heartimg3 = this.add.image (580,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
 
       window.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
       window.keyimg2 = this.add.image (100,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
@@ -133,6 +147,28 @@ class room2 extends Phaser.Scene {
 
     } 
 
+    if ( window.heart === 3) {
+        window.heartimg1.setVisible(true);
+        window.heartimg2.setVisible(true);
+        window.heartimg3.setVisible(true);
+  
+    } else if ( window.heart === 2) {
+      window.heartimg1.setVisible(true);
+      window.heartimg2.setVisible(true);
+      window.heartimg3.setVisible(false);
+  
+    } else if ( window.heart === 1) {
+        window.heartimg1.setVisible(true);
+        window.heartimg2.setVisible(false);
+        window.heartimg3.setVisible(false);
+      
+      } else if (window.key === 0) {
+        window.heartimg1.setVisible(false);
+        window.heartimg2.setVisible(false);
+        window.heartimg3.setVisible(false);
+  
+    }
+
 
       this.key1 = this.physics.add.sprite(510, 90, "keypng").setScale(0.5);
       this.key2 = this.physics.add.sprite(370, 260, "keypng").setScale(0.5);
@@ -159,9 +195,17 @@ class room2 extends Phaser.Scene {
     // make the camera follow the player
     this.cameras.main.startFollow(this.player);
 
-    this.physics.add.overlap(
+    // this.physics.add.overlap(
+    //     this.player,
+    //     this.guard,
+    //     this.guardCaught,
+    //     null,
+    //     this
+    //   );
+
+      this.physics.add.overlap(
         this.player,
-        this.guard,
+        [this.guard,this.guard2,this.guard3],
         this.guardCaught,
         null,
         this
@@ -172,8 +216,8 @@ class room2 extends Phaser.Scene {
     update() {
 
         if(
-            this.player.x > 283 &
-            this.player.x < 306 &
+            this.player.x > 269 &
+            this.player.x < 313 &
             this.player.y > 516 &
             this.player.y < 520 
         ){
@@ -209,23 +253,12 @@ class room2 extends Phaser.Scene {
     collectKey (player,key1) {
         console.log("collectKey")
 
+        this.dingSnd.play();
+
         window.key++
 
         key1.disableBody(true, true);
 
-        // if ( window.key === 1) {
-        //     window.keyimg1.setVisible(true);
-    
-        // } else if ( window.key === 2) {
-        //     window.keyimg2.setVisible(true);
-    
-        // } else if ( window.key === 3) {
-        //     window.keyimg3.setVisible(true);
-    
-        // } else if (window.key === 0) {
-        //     window.keyimg.setVisible(false);
-    
-        // } 
 
         if ( window.key === 1) {
             window.keyimg1.setVisible(true);
@@ -281,9 +314,45 @@ class room2 extends Phaser.Scene {
         } 
     }
 
-    guardCaught() {
-        console.log("Late for classes, caught by the guard");
+    guardCaught(player,guard) {
+        console.log("attack by guard");
+        window.heart--
+
+        this.hitSnd.play();
+
+        // Shake screen
+       this.cameras.main.shake(150);
+
+        guard.disableBody(true, true);
+
+        console.log("heart: ", window.heart)
+
+        if ( window.heart === 3) {
+          window.heartimg1.setVisible(true);
+          window.heartimg2.setVisible(true);
+          window.heartimg3.setVisible(true);
+    
+      } else if ( window.heart === 2) {
+        window.heartimg1.setVisible(true);
+        window.heartimg2.setVisible(true);
+        window.heartimg3.setVisible(false);
+    
+      } else if ( window.heart === 1) {
+          window.heartimg1.setVisible(true);
+          window.heartimg2.setVisible(false);
+          window.heartimg3.setVisible(false);
+        
+        } else if (window.key === 0) {
+          window.heartimg1.setVisible(false);
+          window.heartimg2.setVisible(false);
+          window.heartimg3.setVisible(false);
+    
+      }
+
+      if (window.heart == 0){
         this.scene.start("gameOver");
+        this.loseSnd.play();
+      }
       }
 
     moveGuard1() {
@@ -329,6 +398,8 @@ class room2 extends Phaser.Scene {
         playerPos.y = 456
         playerPos.dir = "down"
         this.scene.start("gameScene", {playerPos: playerPos})
+
+        this.dooropenSnd.play();
     }
 
 }

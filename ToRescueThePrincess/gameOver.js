@@ -7,8 +7,8 @@ class gameOver extends Phaser.Scene {
 
     preload() {
 
-       
-
+        this.load.atlas('down', 'assets/knight_walk_down.png', 'assets/knight_walk_down.json');
+        this.load.image("tryagain","assets/tryagain.jpg")
 
         
 
@@ -18,16 +18,19 @@ class gameOver extends Phaser.Scene {
 
     create () {
 
-       
+        this.add.image (320,320,'tryagain')
 
-        console.log("gameOver")
-        this.add.text(185,280, 'GAME OVER', 
-            { font: '44px Rakkas', fill: '#ffffff' });
+        // console.log("gameOver")
+        // this.add.text(185,300, 'TRY AGAIN', 
+        //     { font: '44px Rakkas', fill: '#ffffff' });
 
           this.add.text(220,550, 'press spacebar to restart', 
             { font: '20px Rakkas', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
+
+        window.key = 0
+        window.heart = 3
 
         spaceDown.on('down', function(){
             let playerPos = {};
@@ -36,7 +39,26 @@ class gameOver extends Phaser.Scene {
         playerPos.dir = "right"
             this.scene.start("gameScene",{playerPos: playerPos});
             }, this );
-            window.key = 0
+            
+
+            this.anims.create({ 
+                key: 'down', 
+               frames: [ 
+                   { key: 'down', frame: 'knight_27' },
+                   { key: 'down', frame: 'knight_28' }, 
+                   { key: 'down', frame: 'knight_29' },         
+                   { key: 'down', frame: 'knight_30' },
+                   { key: 'down', frame: 'knight_31' },
+                   { key: 'down', frame: 'knight_32' },
+                   { key: 'down', frame: 'knight_33' },        
+                   
+                       
+               ],
+                       frameRate: 10,
+                       repeat: -1
+                   });
+
+               this.add.sprite(330, 470, "down").play("down").setScale(2);
     }
 
     

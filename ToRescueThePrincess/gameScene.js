@@ -21,6 +21,7 @@ class gameScene extends Phaser.Scene {
          this.load.image('dungeonpng', 'assets/dungeon1.png')
          this.load.image('wallpng', 'assets/wall.png')
          this.load.image("keypng","assets/key.png")
+         this.load.image("heartpng","assets/heart.png")
 
 
         // // chars
@@ -29,7 +30,13 @@ class gameScene extends Phaser.Scene {
         this.load.atlas('up', 'assets/knight_walk_up.png', 'assets/knight_walk_up.json');
         this.load.atlas('down', 'assets/knight_walk_down.png', 'assets/knight_walk_down.json');
 
- 
+        this.load.audio("ding","assets/ding.mp3");
+        this.load.audio("bgmusic","assets/bg_music.mp3");
+        this.load.audio("hit","assets/hit.wav");
+        this.load.audio("smallhit","assets/smallhit.wav");
+        this.load.audio("dooropen","assets/doorOpen.wav");
+        this.load.audio("win","assets/win.wav");
+        this.load.audio("lose","assets/lose.mp3");
 
     } // end of preload //
 
@@ -37,6 +44,16 @@ class gameScene extends Phaser.Scene {
 
     console.log("world map")
     console.log("keys",window.key);
+
+    this.music = this.sound.add("bgmusic",{loop: true}).setVolume(0.06);
+    this.dingSnd = this.sound.add("ding").setVolume(3);
+    this.hitSnd = this.sound.add("hit").setVolume(3);
+    this.smallhitSnd = this.sound.add("smallhit").setVolume(2);
+    this.dooropenSnd = this.sound.add("dooropen").setVolume(0.5);
+    this.winSnd = this.sound.add("win").setVolume(0.2);
+    this.loseSnd = this.sound.add("lose").setVolume(1);
+    
+    // this.bgmusicSnd = this.sound.add("bgmusic")
 
    var map = this.make.tilemap({key:'world'});
 
@@ -56,8 +73,8 @@ class gameScene extends Phaser.Scene {
    
 
     this.anims.create({ 
-        key: 'left', 
-       frames: [ 
+        key:'left', 
+       frames:[ 
            { key: 'left', frame: 'knight_14' },
            { key: 'left', frame: 'knight_15' }, 
            { key: 'left', frame: 'knight_16' },         
@@ -179,6 +196,12 @@ class gameScene extends Phaser.Scene {
       this.guard2 = this.physics.add.sprite(337, 747, "guarddown").play("guarddownAnim").setScale(0.9);
       this.guard3 = this.physics.add.sprite(747, 435, "guarddown").play("guarddownAnim").setScale(0.9);
 
+      window.heartimg1 = this.add.image (480,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
+      window.heartimg2 = this.add.image (530,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
+      window.heartimg3 = this.add.image (580,50,'heartpng').setScrollFactor(0).setVisible(true).setScale(0.1);
+
+
+
     //   this.guard2 = this.physics.add.sprite(300, 700, "guarddown").play("guarddownAnim").setScale(0.9);
 
       window.keyimg1 = this.add.image (50,50,'keypng').setScrollFactor(0).setVisible(false).setScale(0.5);
@@ -241,8 +264,28 @@ class gameScene extends Phaser.Scene {
         window.keyimg7.setVisible(false);
 
     } 
-    
 
+    if ( window.heart === 3) {
+      window.heartimg1.setVisible(true);
+      window.heartimg2.setVisible(true);
+      window.heartimg3.setVisible(true);
+
+  } else if ( window.heart === 2) {
+    window.heartimg1.setVisible(true);
+    window.heartimg2.setVisible(true);
+    window.heartimg3.setVisible(false);
+
+  } else if ( window.heart === 1) {
+      window.heartimg1.setVisible(true);
+      window.heartimg2.setVisible(false);
+      window.heartimg3.setVisible(false);
+    
+    } else if (window.key === 0) {
+      window.heartimg1.setVisible(false);
+      window.heartimg2.setVisible(false);
+      window.heartimg3.setVisible(false);
+
+  }
     
 
     //   this.key1 = this.physics.add.sprite(200, 200, "keypng").setScale(0.5);
@@ -273,7 +316,7 @@ class gameScene extends Phaser.Scene {
 
     this.physics.add.overlap(
         this.player,
-        this.guard,
+        [this.guard,this.guard2,this.guard3],
         this.guardCaught,
         null,
         this
@@ -293,6 +336,7 @@ class gameScene extends Phaser.Scene {
         this.player.y < 187 
     ){
         this.room1();
+        this.dooropenSnd.play();
     }
 
     else if(
@@ -302,6 +346,7 @@ class gameScene extends Phaser.Scene {
         this.player.y < 446
     ){
         this.room2();
+        this.dooropenSnd.play();
     }
 
     else if(
@@ -311,17 +356,29 @@ class gameScene extends Phaser.Scene {
         this.player.y < 740
     ){
         this.room3();
+        this.dooropenSnd.play();
     }
 
     else if(
         this.player.x > 773 &&
         this.player.x < 830 &&
         this.player.y > 855 &&
-        this.player.y < 868 
-        && window.key >= 7
+        this.player.y < 868 && 
+        window.key >= 1
     ){
         this.room4();
+        this.dooropenSnd.play();
+        this.winSnd.play();
     }
+    else if(
+      this.player.x > 777 &&
+      this.player.x < 827 &&
+      this.player.y > 853.6 &&
+      this.player.y < 856 && 
+      window.key <= 7
+  ){
+      this.smallhitSnd.play();
+  }
 
 
 
@@ -355,6 +412,8 @@ class gameScene extends Phaser.Scene {
     collectKey (player,key1) {
         console.log("collectKey")
 
+        this.dingSnd.play();
+
         window.key++
 
         key1.disableBody(true, true);
@@ -365,9 +424,50 @@ class gameScene extends Phaser.Scene {
 
 }
 
-    guardCaught() {
-        console.log("Late for classes, caught by the guard");
+    guardCaught(player,guard) {
+        console.log("attack by guard");
+
+        this.hitSnd.play();
+
+        // Shake screen
+       this.cameras.main.shake(150);
+
+        window.heart--
+
+        guard.disableBody(false, true);
+
+        console.log("heart: ", window.heart)
+
+        if ( window.heart === 3) {
+          window.heartimg1.setVisible(true);
+          window.heartimg2.setVisible(true);
+          window.heartimg3.setVisible(true);
+    
+      } else if ( window.heart === 2) {
+        window.heartimg1.setVisible(true);
+        window.heartimg2.setVisible(true);
+        window.heartimg3.setVisible(false);
+    
+      } else if ( window.heart === 1) {
+          window.heartimg1.setVisible(true);
+          window.heartimg2.setVisible(false);
+          window.heartimg3.setVisible(false);
+        
+        } else if (window.key === 0) {
+          window.heartimg1.setVisible(false);
+          window.heartimg2.setVisible(false);
+          window.heartimg3.setVisible(false);
+    
+      }
+
+      if (window.heart == 0){
         this.scene.start("gameOver");
+        this.loseSnd.play();
+      
+      }
+
+
+        
       }
 
     moveGuard1() {

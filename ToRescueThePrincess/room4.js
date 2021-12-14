@@ -15,9 +15,12 @@ class room4 extends Phaser.Scene {
     preload() {
         var map = this.load.tilemapTiledJSON('room4','assets/room4.json')
 
+        this.load.atlas('princess', 'assets/princess.png', 'assets/princess.json');
+
         this.load.image('dungeonpng', 'assets/dungeon1.png')
          this.load.image('wallpng', 'assets/wall.png')
-
+         this.load.image("heartpng","assets/heart.png")
+         this.load.audio("win","assets/win.wav");
     }
 
     create() {
@@ -41,7 +44,19 @@ class room4 extends Phaser.Scene {
     this.physics.world.bounds.width = this.floorLayer.width*2;
     this.physics.world.bounds.height = this.floorLayer.height*2;
 
+    this.anims.create({ 
+        key: 'princess', 
+       frames: [ 
+           { key: 'princess', frame: 'Asset 138' },
+           { key: 'princess', frame: 'Asset 139' }, 
+          
+               
+       ],
+               frameRate: 2, 
+               repeat: -1
+           });
 
+      this.add.sprite(250, 160, "princess").play("princess").setScale(0.9);
 
     // load player into phytsics
     this.player = this.physics.add.sprite(350, 250, 'up'
