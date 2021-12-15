@@ -33,6 +33,7 @@ class preloadScene extends Phaser.Scene {
       this.load.audio("win","assets/win.wav");
       this.load.audio("smallhit","assets/smallhit.wav");
       this.load.audio("lose","assets/lose.mp3");
+      this.load.audio("paper","assets/paperslide.wav");
 
 
     } // end of preload //
@@ -41,7 +42,7 @@ class preloadScene extends Phaser.Scene {
 
       this.add.image (320,320,'introjpg')
       this.music = this.sound.add("bgmusic",{loop: true}).setVolume(0.06);
-      this.music = this.sound.add("preloadmusic",{loop: true}).setVolume(0.06);
+      // this.music = this.sound.add("preloadmusic",{loop: true}).setVolume(0.06);
 
       this.music.play();
 
@@ -230,7 +231,9 @@ class preloadScene extends Phaser.Scene {
         playerPos.y = 260
         playerPos.dir = "right"
             this.scene.start("scene1",{playerPos: playerPos});
+          
             }, this );
+            
 
     }
 
