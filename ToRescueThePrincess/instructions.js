@@ -201,7 +201,7 @@ class instructions extends Phaser.Scene {
         // this.add.text(70,280, 'whatsup', 
         //     { font: '40px Rakkas', fill: '#ffffff' });
 
-        this.add.text(175,440, 'Press SPACEBAR to start the game', 
+        this.add.text(175,440, 'Press SPACEBAR to next', 
             { font: '20px Rakkas', fill: '#ffffff' });
 
         var spaceDown = this.input.keyboard.addKey('SPACE');
