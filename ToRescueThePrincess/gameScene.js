@@ -45,7 +45,7 @@ class gameScene extends Phaser.Scene {
     console.log("world map")
     console.log("keys",window.key);
 
-    this.music = this.sound.add("bgmusic",{loop: true}).setVolume(0.06);
+    // this.music = this.sound.add("bgmusic",{loop: true}).setVolume(0.06);
     this.dingSnd = this.sound.add("ding").setVolume(3);
     this.hitSnd = this.sound.add("hit").setVolume(3);
     this.smallhitSnd = this.sound.add("smallhit").setVolume(2);

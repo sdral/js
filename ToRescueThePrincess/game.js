@@ -1,3 +1,6 @@
+var game;
+window.onload=function()
+{
 var config = {
     type: Phaser.AUTO,
     ////// pixel size * tile map size * zoom 
@@ -24,3 +27,5 @@ var game = new Phaser.Game(config);
 
 window.key= 0
 window.heart = 3
+
+}

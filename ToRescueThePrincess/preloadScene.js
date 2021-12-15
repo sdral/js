@@ -33,7 +33,7 @@ class preloadScene extends Phaser.Scene {
       this.load.audio("win","assets/win.wav");
       this.load.audio("smallhit","assets/smallhit.wav");
       this.load.audio("lose","assets/lose.mp3");
-      this.load.audio("paper","assets/paperslide.wav");
+      
 
 
     } // end of preload //
