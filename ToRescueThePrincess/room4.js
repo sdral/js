@@ -56,7 +56,7 @@ class room4 extends Phaser.Scene {
                repeat: -1
            });
 
-      this.add.sprite(250, 160, "princess").play("princess").setScale(0.9);
+      this.physics.add.sprite(250, 160, "princess").play("princess").setScale(0.7);
 
     // load player into phytsics
     this.player = this.physics.add.sprite(350, 250, 'up'
