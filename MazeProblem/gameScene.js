@@ -375,22 +375,11 @@ class gameScene extends Phaser.Scene {
 
   room1(player, title) {
     console.log("entering room1");
+    this.holdKey=false;
     this.scene.start("instructions3");
   }
 
-  room2(player, title) {
-    console.log("entering room2");
-    this.scene.start("room2");
-  }
-
-  room3(player, title) {
-    console.log("entering room3");
-    this.scene.start("room3");
-  }
-
-  room4(player, title) {
-    this.scene.start("room4");
-  }
+  
 
   //   updateInventory() {
   //     // Emit events showInventory
