@@ -381,38 +381,41 @@ class room1 extends Phaser.Scene {
 
   getThankyou(player, thankyou) {
     console.log("hold getThankyou")
-
-    this.holdThankyou = this.player.x + 20
+if(this.holdThankyou==false){
+  this.holdThankyou = this.player.x + 20
     this.thankyou.y = this.player.y
     this.holdThankyou = true;
 
     this.dingSnd.play();
+}
+    
 
   }
 
   getEar(player, ear) {
     console.log("getEar")
-
+if(this.holdEar==false){
     this.holdEar = this.player.x + 20
     this.ear.y = this.player.y
     this.holdEar = true;
 
     this.dingSnd.play();
-
+}
   }
 
   getClock(player, clock) {
     console.log("getClock")
-
+if(this.holdClock==false){
     this.holdClock = this.player.x + 20
     this.clock.y = this.player.y
     this.holdClock = true;
 
     this.dingSnd.play();
-
+}
   }
 
   getKey(player, npc2) {
+    
     this.key1.x = this.player.x + 20
     this.key1.y = this.player.y
     this.holdKey = true;
